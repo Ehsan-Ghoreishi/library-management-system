@@ -71,15 +71,15 @@ from mylibrary import storage
 
 lib = Library()
 lib.add_book("Dune", "Frank Herbert")
-lib.borrow_book("dune")          # titles are case-insensitive
+lib.borrow_book("dune")  # titles are case-insensitive
 
 try:
     lib.borrow_book("Dune")
 except BookUnavailableError as exc:
-    print(exc)                   # 'Dune' is already borrowed
+    print(exc)  # 'Dune' is already borrowed
 
 for book in lib.search("herbert"):
-    print(book)                  # Dune by Frank Herbert (borrowed)
+    print(book)  # Dune by Frank Herbert (borrowed)
 
 storage.save(lib, "library.json")
 lib = storage.load("library.json")
