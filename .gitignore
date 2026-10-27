@@ -6,13 +6,23 @@ build/
 dist/
 .eggs/
 
+# Testing / tooling
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
 # Virtual environment
 venv/
 env/
 .venv/
 
+# Local data
+library.json
+
 # VS Code
 .vscode/
 
 # macOS
-.DSStore
+.DS_Store
