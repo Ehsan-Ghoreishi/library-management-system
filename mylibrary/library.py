@@ -4,7 +4,12 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 
-from mylibrary.exceptions import BookNotFoundError, DuplicateBookError
+from mylibrary.exceptions import (
+    BookNotBorrowedError,
+    BookNotFoundError,
+    BookUnavailableError,
+    DuplicateBookError,
+)
 from mylibrary.models import Book
 
 
@@ -60,3 +65,17 @@ class Library:
             for book in self._books.values()
             if needle in book.title.casefold() or needle in book.author.casefold()
         ]
+
+    def borrow_book(self, title: str) -> Book:
+        book = self.get_book(title)
+        if not book.available:
+            raise BookUnavailableError(book.title)
+        book.available = False
+        return book
+
+    def return_book(self, title: str) -> Book:
+        book = self.get_book(title)
+        if book.available:
+            raise BookNotBorrowedError(book.title)
+        book.available = True
+        return book

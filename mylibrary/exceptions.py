@@ -19,3 +19,19 @@ class DuplicateBookError(LibraryError):
     def __init__(self, title: str) -> None:
         super().__init__(f"'{title}' is already in the library")
         self.title = title
+
+
+class BookUnavailableError(LibraryError):
+    """Raised when borrowing a book that is already borrowed."""
+
+    def __init__(self, title: str) -> None:
+        super().__init__(f"'{title}' is already borrowed")
+        self.title = title
+
+
+class BookNotBorrowedError(LibraryError):
+    """Raised when returning a book that was not borrowed."""
+
+    def __init__(self, title: str) -> None:
+        super().__init__(f"'{title}' was not borrowed")
+        self.title = title
